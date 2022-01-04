@@ -3,12 +3,8 @@ package com.example.androidsample
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
 import kotlinx.android.synthetic.main.activity_main.*
-import android.content.Intent
-import java.lang.Exception
-import java.lang.NumberFormatException
-
+import java.text.DecimalFormat
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,54 +12,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun converCurrency(view: View) {
-        try {
-            if (value1.text.isNotEmpty() && value2.text.isNotEmpty()) {
-
-                val pig = Pig(value1)
-                val chicken = Chicken(value2)
-
-
-                if (pig == 7) {
-                    textView.text = getString(R.string.re_enter4)
-                } else textView.text = pig.toString() + " 마리"
+    fun converCurrency(view: View){
+        if (dollarText.text.isNotEmpty()){
+            val dollarValue = dollarText.text.toString().toFloat()
+            val dec = DecimalFormat("#,###.####"  + "원")
+            val euroValue = dec.format(dollarValue * 1188)
 
 
-                if (chicken == 7) {
-                    textView2.text = getString(R.string.re_enter2)
-                } else textView2.text = chicken.toString() + " 마리"
 
-                textView3.text = ""
-            } else textView3.text = getString(R.string.no_value_String)
-        } catch (e: NumberFormatException) {
-            textView3.text = "정수값 최대치는 2147483647 입니다"
-        }
 
+            textView.text = euroValue.toString()
+        } else
+            textView.text = getString(R.string.no_value_String)
     }
 
-    fun Pig(a: EditText): Int {
-            val calcuvalue = a.text.toString().toInt()
-
-            if ((calcuvalue % 4) != 0) {
-                return 7
-            } else if (calcuvalue is Int) {
-                val Pigreg = calcuvalue / 4
-                return Pigreg
-            }
-
-        return 7
-    }
-
-    fun Chicken(a: EditText): Int {
-            val calcuvalue = a.text.toString().toInt()
-
-            if ((calcuvalue % 2) != 0) {
-                return 7
-            } else if (calcuvalue is Int) {
-                val Chickenwing = calcuvalue / 2
-                return Chickenwing
-            }
-
-        return 7
-    }
 }
