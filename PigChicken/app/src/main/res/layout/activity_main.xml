@@ -22,11 +22,11 @@
 
     <EditText
         android:id="@+id/value1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="209dp"
+        android:layout_height="48dp"
         android:layout_marginTop="104dp"
         android:ems="10"
-        android:hint="@string/Pigreg"
+        android:hint="@string/allreg"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:minHeight="48dp"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="184dp"
         android:ems="10"
-        android:hint="@string/Chicken"
+        android:hint="@string/murisu"
         android:importantForAutofill="no"
         android:inputType="numberDecimal"
         android:minHeight="48dp"

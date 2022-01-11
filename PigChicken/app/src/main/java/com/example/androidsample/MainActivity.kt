@@ -24,12 +24,12 @@ class MainActivity : AppCompatActivity() {
                 val chicken = Chicken(value2)
 
 
-                if (pig == 7) {
+                if (pig == 0) {
                     textView.text = getString(R.string.re_enter4)
                 } else textView.text = pig.toString() + " 마리"
 
 
-                if (chicken == 7) {
+                if (chicken == 0) {
                     textView2.text = getString(R.string.re_enter2)
                 } else textView2.text = chicken.toString() + " 마리"
 
@@ -45,25 +45,25 @@ class MainActivity : AppCompatActivity() {
             val calcuvalue = a.text.toString().toInt()
 
             if ((calcuvalue % 4) != 0) {
-                return 7
+                return 0
             } else if (calcuvalue is Int) {
                 val Pigreg = calcuvalue / 4
                 return Pigreg
             }
 
-        return 7
+        return 0
     }
 
     fun Chicken(a: EditText): Int {
             val calcuvalue = a.text.toString().toInt()
 
             if ((calcuvalue % 2) != 0) {
-                return 7
+                return 0
             } else if (calcuvalue is Int) {
                 val Chickenwing = calcuvalue / 2
                 return Chickenwing
             }
 
-        return 7
+        return 0
     }
 }

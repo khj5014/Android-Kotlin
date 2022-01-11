@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">돼지와 닭</string>
     <string name="convert_string">마릿 수는?</string>
-    <string name="Pigreg">돼지 다리수</string>
+    <string name="allreg">전체 다리수</string>
     <string name="pig_su">돼지 수</string>
-    <string name="Chicken">닭 날개수</string>
+    <string name="murisu">머리 수</string>
     <string name="chicken_su">닭 수</string>
     <string name="re_enter2">2의 배수를 입력하세요</string>
     <string name="re_enter4">4의 배수를 입력하세요</string>
