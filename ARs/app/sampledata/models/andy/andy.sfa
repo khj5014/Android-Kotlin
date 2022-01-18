@@ -4,7 +4,7 @@
       name: 'unlit_material',
       parameters: [
         {
-          baseColor: null,
+          baseColor: 'andy',
         },
         {
           baseColorTint: [
@@ -15,7 +15,7 @@
           ],
         },
         {
-          metallic: 2,
+          metallic: 1,
         },
         {
           roughness: 1,
@@ -34,9 +34,16 @@
       'Orientation',
     ],
     collision: {},
-    file: 'sampledata/models/andy.obj',
+    file: 'sampledata/models/andy/andy.obj',
     name: 'andy',
     recenter: 'root',
   },
+  samplers: [
+    {
+      file: 'sampledata/models/andy\\andy.png',
+      name: 'andy',
+      pipeline_name: 'andy.png',
+    },
+  ],
   version: '0.54:2',
 }

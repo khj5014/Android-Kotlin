@@ -1,0 +1,53 @@
+{
+  materials: [
+    {
+      name: '_10778_Toilet_V201___Default',
+      parameters: [
+        {
+          baseColor: 'Toilet',
+        },
+        {
+          baseColorTint: [
+            0.58799999999999997,
+            0.58799999999999997,
+            0.58799999999999997,
+            1,
+          ],
+        },
+        {
+          metallic: 1,
+        },
+        {
+          roughness: 0.19425700000000001,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/obj_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/models/toil/10778_Toilet_V2.obj',
+    name: '10778_Toilet_V2',
+    recenter: 'root',
+    scale: 0.067655000000000007,
+  },
+  samplers: [
+    {
+      file: 'sampledata/models/toil\\Toilet.jpg',
+      name: 'Toilet',
+      params: {
+        usage_type: 'Data',
+      },
+      pipeline_name: 'Toilet.jpg',
+    },
+  ],
+  version: '0.54:2',
+}

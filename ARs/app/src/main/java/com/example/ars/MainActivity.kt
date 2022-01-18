@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             var anchor: Anchor = hitResult.createAnchor()
 
             ModelRenderable.builder()
-                .setSource(this, Uri.parse("andy.sfb"))
+                .setSource(this, Uri.parse("10778_Toilet_V2.sfb"))
                 .build()
                 .thenAccept { addModelToScence(anchor, it) }
                 .exceptionally {

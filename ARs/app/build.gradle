@@ -46,7 +46,17 @@ dependencies {
     implementation 'com.google.ar.sceneform:core:1.17.1'
 }
 
-sceneform.asset('sampledata/models/andy.obj',
+sceneform.asset('sampledata/models/andy/andy.obj',
         'default',
-        'sampledata/models/andy.sfa',
+        'sampledata/models/andy/andy.sfa',
         'src/main/assets/andy')
+
+sceneform.asset('sampledata/models/tabel/table.obj',
+        'default',
+        'sampledata/models/tabel/table.sfa',
+        'src/main/assets/table')
+
+sceneform.asset('sampledata/models/toil/10778_Toilet_V2.obj',
+        'default',
+        'sampledata/models/toil/10778_Toilet_V2.sfa',
+        'src/main/assets/10778_Toilet_V2')

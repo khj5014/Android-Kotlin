@@ -23,7 +23,7 @@ class ActivityMain : AppCompatActivity() {
             var anchor: Anchor = hitResult.createAnchor()
 
             ModelRenderable.builder()
-                .setSource(this, Uri.parse("andy.sfb"))
+                .setSource(this, Uri.parse("10778_Toilet_V2.sfb"))
                 .build()
                 .thenAccept { addModelToScence(anchor, it) }
                 .exceptionally {
@@ -34,6 +34,7 @@ class ActivityMain : AppCompatActivity() {
                 }
         })
     }
+
     private fun addModelToScence(anchor: Anchor, it: ModelRenderable?) {
         val anchorNode : AnchorNode = AnchorNode(anchor)
         val transform : TransformableNode = TransformableNode(arFragment.transformationSystem)
@@ -41,6 +42,13 @@ class ActivityMain : AppCompatActivity() {
         transform.renderable = it
         arFragment.arSceneView.scene.addChild(anchorNode)
         transform.select()
+    }
 
+    private fun removeAnchorNode(nodeToRemove: AnchorNode) {
+        //Remove an Anchor node
+        arFragment.getArSceneView().getScene().removeChild(nodeToRemove);
+        nodeToRemove.getAnchor()?.detach();
+        nodeToRemove.setParent(null);
+        nodeToRemove.renderable = null
     }
 }
