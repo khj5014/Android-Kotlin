@@ -18,7 +18,7 @@
 
         <meta-data android:name="com.google.ar.core" android:value="required"/>
 
-        <activity android:name=".ActivityMain"
+        <activity android:name=".`ActivityMain.java`"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

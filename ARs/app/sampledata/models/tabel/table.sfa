@@ -1,4 +1,14 @@
 {
+  animations: [
+    {
+      clips: [
+        {
+          name: 'CINEMA_4D_Basis',
+        },
+      ],
+      path: 'sampledata/models/tabel/table.fbx',
+    },
+  ],
   materials: [
     {
       name: 'Mat.1',
@@ -62,7 +72,7 @@
     file: 'sampledata/models/tabel/table.obj',
     name: 'table',
     recenter: 'root',
-    scale: 0.0097540000000000005,
+    scale: 0.0097350000000000005,
   },
   version: '0.54:2',
 }

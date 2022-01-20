@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">arSample02</string>
+    <string name="button">Button</string>
 </resources>
