@@ -8,10 +8,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.arsample02.databinding.ActivityMainBinding
 import com.google.ar.core.Anchor
 import com.google.ar.sceneform.AnchorNode
+import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.BaseArFragment
 import com.google.ar.sceneform.ux.TransformableNode
+
 
 
 class ActivityMain : AppCompatActivity() {
@@ -21,13 +23,16 @@ class ActivityMain : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding= ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
 
         arFragment.setOnTapArPlaneListener(BaseArFragment.OnTapArPlaneListener { hitResult, plane, motionEvent ->
             var anchor: Anchor = hitResult.createAnchor()
+            val deleteButton = binding.mybutton
+            arrayOf<Node>()
+
 
             ModelRenderable.builder()
                 .setSource(this, Uri.parse("andy.sfb"))
@@ -39,14 +44,15 @@ class ActivityMain : AppCompatActivity() {
                         .show()
                     return@exceptionally null
                 }
+
+            deleteButton.setOnClickListener(View.OnClickListener { //Delete the Anchor if it exists
+                removeAnchorNode(AnchorNode(anchor))
+                currentSelectedAnchorNode = null
+
+            })
         })
 
-        val deleteButton = binding.mybutton
-        deleteButton.setOnClickListener(View.OnClickListener { //Delete the Anchor if it exists
-            removeAnchorNode(AnchorNode())
-            currentSelectedAnchorNode = null
 
-        })
     }
 
     private fun addModelToScence(anchor: Anchor, it: ModelRenderable?) {
@@ -58,6 +64,7 @@ class ActivityMain : AppCompatActivity() {
         transform.select()
     }
 
+    //
     private fun removeAnchorNode(nodeToRemove: AnchorNode) {
         //Remove an Anchor node
         arFragment.getArSceneView().getScene().removeChild(nodeToRemove)
