@@ -2,11 +2,9 @@ package com.example.arsample02
 
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.amodtech.ar.lineview.LineViewMainActivity
 import com.example.arsample02.databinding.ActivityMainBinding
 import com.google.ar.core.Anchor
 import com.google.ar.sceneform.AnchorNode
@@ -45,8 +43,7 @@ class ActivityMain : AppCompatActivity() {
 
         val deleteButton = binding.mybutton
         deleteButton.setOnClickListener(View.OnClickListener { //Delete the Anchor if it exists
-            Log.d(LineViewMainActivity.TAG, "Deleteing anchor")
-            removeAnchorNode()
+            removeAnchorNode(AnchorNode())
             currentSelectedAnchorNode = null
 
         })
