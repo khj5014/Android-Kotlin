@@ -73,14 +73,15 @@ class ActivityMain : AppCompatActivity() {
     }
     fun removeAllSticker(fragment: ArFragment) {
         val nodeList = ArrayList(fragment.getArSceneView().getScene().getChildren())
-        for (childNode in nodeList) {
+        var childNode = 
+
             if (childNode is AnchorNode) {
                     childNode.anchor != null
                     childNode.anchor!!.detach()
                     fragment.getArSceneView().getScene().removeChild(childNode)
                     childNode.setParent(null)
 
-            }
+
         }
     }
 }
