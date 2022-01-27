@@ -2,22 +2,28 @@ package com.example.arsample02
 
 import android.net.Uri
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.arsample02.databinding.ActivityMainBinding
 import com.google.ar.core.Anchor
 import com.google.ar.sceneform.AnchorNode
+import com.google.ar.sceneform.HitTestResult
 import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.BaseArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 
+
 class ActivityMain : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var arFragment: ArFragment
+    private val anchorNodeList: ArrayList<AnchorNode> = ArrayList()
+    private var numberOfAnchors = 0
     private var currentSelectedAnchorNode: AnchorNode? = null
+    private lateinit var anchor: Anchor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +34,9 @@ class ActivityMain : AppCompatActivity() {
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
 
         arFragment.setOnTapArPlaneListener(BaseArFragment.OnTapArPlaneListener { hitResult, plane, motionEvent ->
-            var anchor: Anchor = hitResult.createAnchor()
+            anchor = hitResult.createAnchor()
 
+            numberOfAnchors++
             ModelRenderable.builder()
                 .setSource(this, Uri.parse("andy.sfb"))
                 .build()
@@ -41,14 +48,17 @@ class ActivityMain : AppCompatActivity() {
 
                     return@exceptionally null
                 }
-            deleteButton.setOnClickListener(View.OnClickListener { //Delete the Anchor if it exists
-                removeAllSticker(arFragment)
-                currentSelectedAnchorNode = null
-
-            })
-
         })
 
+        deleteButton.setOnClickListener(View.OnClickListener {
+            removeAnchorNode(AnchorNode(anchor))
+        })
+        val transform: TransformableNode = TransformableNode(arFragment.transformationSystem)
+        transform.setOnTapListener { hitTestResult: HitTestResult, Event: MotionEvent? ->
+            val nodeToRemove: Node? = hitTestResult.getNode()
+            val anchorNode = anchorNode(nodeToRemove)
+            anchorNode.removeChild(nodeToRemove)
+        }
 
     }
 
@@ -63,25 +73,31 @@ class ActivityMain : AppCompatActivity() {
     }
 
     //제거
-    private fun removeAnchorNode(nodeToRemove: AnchorNode) {
-        //Remove an Anchor node
-        arFragment.getArSceneView().getScene().removeChild(nodeToRemove)
+    private fun removeAnchorNode(nodeCut: AnchorNode?) {
+        //Remove an anchor node
+        if (nodeCut != null) {
+            arFragment.getArSceneView().getScene().removeChild(nodeCut)
 
-//        nodeToRemove.getAnchor()?.detach()
-//        nodeToRemove.setParent(null)
-//        nodeToRemove.renderable = null
-    }
-    fun removeAllSticker(fragment: ArFragment) {
-        val nodeList = ArrayList(fragment.getArSceneView().getScene().getChildren())
-        var childNode = 
-
-            if (childNode is AnchorNode) {
-                    childNode.anchor != null
-                    childNode.anchor!!.detach()
-                    fragment.getArSceneView().getScene().removeChild(childNode)
-                    childNode.setParent(null)
-
-
+            anchorNodeList.remove(nodeCut)
+            nodeCut.getAnchor()?.detach()
+            nodeCut.setParent(null)
+            nodeCut.renderable = null
+            numberOfAnchors--
         }
     }
+
+    fun removeAllSticker(fragment: ArFragment) {
+        val nodeList = ArrayList(fragment.getArSceneView().getScene().getChildren())
+        for (childNode in nodeList) {
+            if (childNode is AnchorNode) {
+                if ((childNode as AnchorNode).anchor != null) {
+                    (childNode as AnchorNode).anchor!!.detach()
+                    fragment.getArSceneView().getScene().removeChild(childNode)
+                    (childNode as AnchorNode).setParent(null)
+                }
+            }
+        }
+    }
+
 }
+
