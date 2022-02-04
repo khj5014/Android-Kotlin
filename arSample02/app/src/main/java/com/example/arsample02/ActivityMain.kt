@@ -21,7 +21,7 @@ class ActivityMain : AppCompatActivity() {
     private lateinit var anchor: Anchor
     private val anchorNodeList: ArrayList<AnchorNode> = ArrayList()
     private val anchorlist: ArrayList<Anchor> = ArrayList()
-    private var Anchor_index = 0
+    var Anchor_index = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,40 +65,41 @@ class ActivityMain : AppCompatActivity() {
 
         anchorlist.add(anchor)
 
-        if(Anchor_index >= 0){
-            Anchor_index++
-        }
-
-
-        val text =  "생성 /// 리스트" + anchorlist
-        val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_LONG)
+        val text = "생성" + anchorlist
+        val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
         toast.show()
+
+        Anchor_index++
+
     }
 
     //제거 (마지막 생성먼저)
     private fun removeAnchorNode(anchor: Anchor) {
-        val anchorNode: AnchorNode = AnchorNode(anchor)
+        val An_index: Int = Anchor_index - 1
+        val anchorNode: AnchorNode = AnchorNode(anchorlist.get(An_index))
 
-        anchorlist.remove(anchor)
+
 
         if (anchorNode != null) {
-
+            anchorlist.remove(anchorlist.get(An_index))
             anchorNodeList.remove(anchorNode)
 
             anchorNode.getAnchor()?.detach()         //앵커 분리
             anchorNode.setParent(null)
             anchorNode.renderable = null
+
+
+            val text = "제거" + anchorlist
+            val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
+            toast.show()
+
+            Anchor_index--
         }
 
-        if(Anchor_index == 0){
+            if (Anchor_index == -1)
+                Anchor_index = 0
 
-            Anchor_index = 0
-        }else
-            Anchor_index--
 
-        val text = anchorlist.get(0).toString() + "제거 /// 리스트" + anchorlist
-        val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_LONG)
-        toast.show()
     }
 
     //전체삭제
