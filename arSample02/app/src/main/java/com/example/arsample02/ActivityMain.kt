@@ -2,7 +2,6 @@ package com.example.arsample02
 
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -20,21 +19,19 @@ class ActivityMain : AppCompatActivity() {
     private lateinit var arFragment: ArFragment
     private lateinit var anchor: Anchor
     private val anchorNodeList: ArrayList<AnchorNode> = ArrayList()
-    private val anchorlist: ArrayList<Anchor> = ArrayList()
-    var Anchor_index = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val deleteButton = binding.mybutton
-
+        deleteButton.setOnClickListener { removeAnchorNode() }
 
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
 
         arFragment.setOnTapArPlaneListener(BaseArFragment.OnTapArPlaneListener { hitResult, plane, motionEvent ->
             anchor = hitResult.createAnchor()
-
 
             ModelRenderable.builder()
                 .setSource(this, Uri.parse("andy.sfb"))
@@ -49,57 +46,49 @@ class ActivityMain : AppCompatActivity() {
                     return@exceptionally null
                 }
         })
-        deleteButton.setOnClickListener(View.OnClickListener {
-            removeAnchorNode(anchor)
-        })
+
     }
 
     //생성
     private fun addModelToScence(anchor: Anchor, it: ModelRenderable?) {
-        val anchorNode: AnchorNode = AnchorNode(anchor)
-        val transform: TransformableNode = TransformableNode(arFragment.transformationSystem)
+        val anchorNode = AnchorNode(anchor)
+        val transform = TransformableNode(arFragment.transformationSystem)
         transform.setParent(anchorNode)
         transform.renderable = it
         arFragment.arSceneView.scene.addChild(anchorNode)
         transform.select()
 
-        anchorlist.add(anchor)
+        anchorNodeList.add(anchorNode)  //리스트에 노드 추가
 
-        val text = "생성" + anchorlist
-        val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
-        toast.show()
-
-        Anchor_index++
+        toastShow("${anchorNodeList.size} 생성")
 
     }
 
     //제거 (마지막 생성먼저)
-    private fun removeAnchorNode(anchor: Anchor) {
-        val An_index: Int = Anchor_index - 1
-        val anchorNode: AnchorNode = AnchorNode(anchorlist.get(An_index))
-
-
-
-        if (anchorNode != null) {
-            anchorlist.remove(anchorlist.get(An_index))
-            anchorNodeList.remove(anchorNode)
+    private fun removeAnchorNode() {
+        val indNum: Int = anchorNodeList.size - 1
+        if(indNum >= 0) {
+            val anchorNode: AnchorNode = anchorNodeList[indNum]
 
             anchorNode.getAnchor()?.detach()         //앵커 분리
             anchorNode.setParent(null)
             anchorNode.renderable = null
 
+            anchorNodeList.remove(anchorNode)
 
-            val text = "제거" + anchorlist
-            val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
-            toast.show()
+            toastShow("제거 성공")
 
-            Anchor_index--
-        }
+        }else toastShow("제거 할 것이 없다.")
+    }
 
-            if (Anchor_index == -1)
-                Anchor_index = 0
-
-
+    //토스트 메시지 출력
+    private fun toastShow(message: String) {
+        var toast: Toast? = null
+        // 토스트 메서드
+        if (toast == null) {
+            toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        } else toast.setText(message)
+        toast?.show()
     }
 
     //전체삭제
@@ -117,6 +106,6 @@ class ActivityMain : AppCompatActivity() {
 //
 //        }
 //    }
-
 }
+
 
