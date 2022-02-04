@@ -62,3 +62,14 @@ sceneform.asset('sampledata/models/tabel/table.obj',
         'sampledata/models/tabel/table.sfa',
         'src/main/assets/table',
         ['sampledata/models/tabel/table.fbx'])
+
+sceneform.asset('sampledata/models/dog/Playful dog.obj',
+        'default',
+        'sampledata/models/dog/Playful dog.sfa',
+        'src/main/assets/Playful dog')
+
+sceneform.asset('sampledata/models/nimo/3d-model.obj',
+        'default',
+        'sampledata/models/nimo/3d-model.sfa',
+        'src/main/assets/3d-model',
+        ['sampledata/models/nimo/3d-model.fbx'])

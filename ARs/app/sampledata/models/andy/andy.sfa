@@ -15,7 +15,7 @@
           ],
         },
         {
-          metallic: 1,
+          metallic: 5,
         },
         {
           roughness: 1,

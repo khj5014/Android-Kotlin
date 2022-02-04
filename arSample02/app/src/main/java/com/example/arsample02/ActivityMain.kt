@@ -34,7 +34,7 @@ class ActivityMain : AppCompatActivity() {
             anchor = hitResult.createAnchor()
 
             ModelRenderable.builder()
-                .setSource(this, Uri.parse("andy.sfb"))
+                .setSource(this, Uri.parse("Playful dog.sfb"))
                 .build()
                 .thenAccept { addModelToScence(anchor, it) }
                 .exceptionally {
@@ -53,6 +53,9 @@ class ActivityMain : AppCompatActivity() {
     private fun addModelToScence(anchor: Anchor, it: ModelRenderable?) {
         val anchorNode = AnchorNode(anchor)
         val transform = TransformableNode(arFragment.transformationSystem)
+
+        transform.getScaleController().setMinScale(0.4f);
+        transform.getScaleController().setMaxScale(0.5f);
         transform.setParent(anchorNode)
         transform.renderable = it
         arFragment.arSceneView.scene.addChild(anchorNode)
