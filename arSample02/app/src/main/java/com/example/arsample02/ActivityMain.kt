@@ -57,7 +57,7 @@ class ActivityMain : AppCompatActivity() {
             anchor = hitResult.createAnchor()
 
             ModelRenderable.builder()
-                .setSource(this, Uri.parse("3dmodel.sfb"))
+                .setSource(this, Uri.parse("Playful dog.sfb"))
                 .build()
                 .thenAccept { addModelToScence(anchor, it) }
                 .exceptionally {
@@ -131,18 +131,23 @@ class ActivityMain : AppCompatActivity() {
 
     //전체삭제
     private fun removeAllSticker(fragment: ArFragment) {
-        val nodeList = ArrayList(fragment.getArSceneView().getScene().getChildren())
-        for (childNode in nodeList) {
-            if (childNode is AnchorNode) {
-                if ((childNode as AnchorNode).anchor != null) {
-                    (childNode as AnchorNode).anchor!!.detach()
-                    fragment.getArSceneView().getScene().removeChild(childNode)
-                    (childNode as AnchorNode).setParent(null)
-                    anchorNodeList.removeAll(anchorNodeList)
+        val indNum: Int = anchorNodeList.size - 1
+        if (indNum >= 0) {
+            val nodeList = ArrayList(fragment.getArSceneView().getScene().getChildren())
+            for (childNode in nodeList) {
+                if (childNode is AnchorNode) {
+                    if ((childNode as AnchorNode).anchor != null) {
+                        (childNode as AnchorNode).anchor!!.detach()
+                        fragment.getArSceneView().getScene().removeChild(childNode)
+                        (childNode as AnchorNode).setParent(null)
+                        anchorNodeList.removeAll(anchorNodeList)
+                    }
                 }
-            }
 
-        }
+            }
+            toastShow("제거 성공")
+        }else toastShow("제거 할 것이 없다.")
+
     }
 
     private fun onPlayAnimation() {
