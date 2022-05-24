@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".MyInfoActivity">
+    tools:context=".fragment.MyinfoFragment">
 
+    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -111,12 +112,12 @@
             android:layout_height="wrap_content"
             android:layout_weight="6">
 
-            <fragment
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/statistics" />
+<!--            <fragment-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:id="@+id/statistics"-->
+<!--                android:name="com.example.capstone4_1.fragment.MyinfoFragment"/>-->
         </LinearLayout>
     </LinearLayout>
 
-
-</LinearLayout>
+</FrameLayout>
