@@ -6,6 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.capstone4_1.databinding.ActivityMainBinding
+import com.example.capstone4_1.fragment.HomeFragment
 import com.example.capstone4_1.fragment.MyinfoFragment
 import com.example.capstone4_1.fragment.QuestListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     var myInfoFragment: Fragment = MyinfoFragment()
     var questScreenFragment: Fragment = QuestListFragment()
+    var homeFragment: Fragment = HomeFragment()
 
     var fragmentManager = supportFragmentManager
 
@@ -51,6 +53,7 @@ class MainActivity : AppCompatActivity() {
 
             when (item.itemId) {
                 R.id.myInfo -> transaction.replace(R.id.mainFrag, myInfoFragment).commit()
+                R.id.home -> transaction.replace(R.id.mainFrag, homeFragment).commit()
                 R.id.questList -> transaction.replace(R.id.mainFrag, questScreenFragment).commit()
             }
             true
