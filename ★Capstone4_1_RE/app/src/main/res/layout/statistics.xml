@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/material_dynamic_tertiary60">
+
+    <ImageView
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_margin="8sp"
+        android:background="@color/white"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:gravity="center"
+            android:text="윗몸일으키기 총 횟수"
+            android:layout_marginTop="8sp"
+            android:layout_marginRight="8sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8sp"
+            android:layout_marginRight="8sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_weight="3"
+                android:layout_height="50sp"
+                android:gravity="center"
+                android:textSize="20sp"
+                android:text="40/100"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:id="@+id/tier"
+                android:src="@drawable/silver_tier" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
