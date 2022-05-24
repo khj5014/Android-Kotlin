@@ -1,9 +1,8 @@
 package com.example.capstone4_1
 import android.content.Context
-import android.view.View
-import org.json.*
-import java.io.*
-import java.lang.Exception
+import org.json.JSONException
+import org.json.JSONObject
+import java.io.FileOutputStream
 
 public final class JsonUtil {
     companion object {
