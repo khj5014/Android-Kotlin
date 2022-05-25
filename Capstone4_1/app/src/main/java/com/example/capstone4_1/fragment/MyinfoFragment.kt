@@ -44,6 +44,10 @@ class MyinfoFragment : Fragment() {
         var genderValue = Character.gender
         var interestValue = Character.interest
 
+        name.append(" $nameValue")
+        gender.append(" $genderValue")
+        interest.append(" $interestValue")
+
         return rootView
     }
 

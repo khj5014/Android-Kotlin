@@ -75,8 +75,9 @@
                     android:layout_weight="1"
                     android:background="@color/purple_200"
                     tools:text="이름"
+                    android:gravity="center_vertical"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="39dp"
+                    android:autoSizeMinTextSize="10dp"
                     android:autoSizeMaxTextSize="40dp"
                     />
 
@@ -89,7 +90,7 @@
                     tools:text="성별"
                     android:gravity="center_vertical"
                     android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="20dp"
+                    android:autoSizeMinTextSize="10dp"
                     android:autoSizeMaxTextSize="40dp"/>
 
                 <TextView
