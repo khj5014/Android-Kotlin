@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/characterInfo"
+                android:text="@string/characterCreate"
                 android:textSize="30sp" />
 
             <LinearLayout
@@ -74,6 +74,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:hint="@string/hintname"
+                        android:maxLength="8"
+                        android:maxLines="1"
                         android:inputType="text" />
                 </LinearLayout>
 
@@ -138,12 +140,12 @@
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/Study" />
+                    android:text="@string/Coding" />
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/English" />
+                    android:text="@string/Laguage" />
             </RadioGroup>
         </LinearLayout>
     </ScrollView>
@@ -151,6 +153,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
         android:layout_gravity="bottom">
 
         <Button
@@ -160,6 +163,7 @@
             android:layout_weight="1"
             android:onClick="reset"
             android:text="@string/Reset"
+
             android:textStyle="bold" />
 
         <Button

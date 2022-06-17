@@ -4,6 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    
     android:layout_margin="30dp" >
 
     <LinearLayout
@@ -11,55 +12,64 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
+
+        <TextView
             android:src="@drawable/ball"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:textColor="#000"
+            android:text="랭크 시스템"
+            android:textSize="20sp"
+            android:gravity="center"/>
+    <LinearLayout
+        android:padding="24dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@drawable/line">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/unranked_tier"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bronze_tier"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/silver_tier"
+            android:layout_weight="1"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gold_tier"
+            android:layout_weight="1"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/unknown_tier"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
         <TextView
             android:id="@+id/txtText"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:textColor="#000"
-            android:text="퀘스트"
+            android:text="퀘스트를 달성하여 랭크를 올려보세요"
             android:gravity="center"
             android:layout_marginBottom="3dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/txtText2"
-            android:textSize="15sp"
-            android:textColor="#000"
-            android:text="퀘스트내용"
-            android:gravity="center"
-            android:layout_marginBottom="3dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/okBtn"
-            android:text="완료"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="mOk"/>
 
-        <Button
-            android:id="@+id/cancleBtn"
-            android:text="취소"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="mCancle"/>
-    </LinearLayout>
 </LinearLayout>

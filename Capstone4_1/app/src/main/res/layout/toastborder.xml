@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toast_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/toastText"
+        android:layout_width="144dp"
+        android:layout_height="73dp"
+        android:background="@drawable/speechbox"
+        android:gravity="center"
+        android:text="ABC"
+        android:paddingBottom="15sp"
+        android:textSize="15sp" />
+
+</LinearLayout>

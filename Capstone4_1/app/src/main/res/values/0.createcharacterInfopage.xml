@@ -1,4 +1,5 @@
 <resources>
+    <string name="characterCreate">캐릭터 생성</string>
     <string name="characterInfo">캐릭터 정보</string>
     <string name="name">이름</string>
     <string name="sexual">성별</string>
@@ -6,8 +7,8 @@
     <string name="sexual_male">남자</string>
     <string name="sexual_female">여자</string>
     <string name="Exercise">운동</string>
-    <string name="Study">공부</string>
-    <string name="English">영어</string>
+    <string name="Coding">코딩</string>
+    <string name="Laguage">언어</string>
     <string name="Reset">리셋</string>
     <string name="Okay">확인</string>
     <string name="hintname">이름을 입력하세요</string>

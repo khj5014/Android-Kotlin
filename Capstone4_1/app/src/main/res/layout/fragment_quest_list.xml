@@ -3,14 +3,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="10dp"
+    android:orientation="vertical"
     tools:context=".fragment.QuestListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <ListView
-        android:id="@+id/questlist"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@color/white"
-        android:dividerHeight="10dp"
-        android:fastScrollEnabled="true" />
+        android:orientation="vertical">
+        <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumson"
+                    android:textStyle="bold"
+                    android:textColor="#A10055FF"
+                    android:text="@string/next_quest"
+                    android:textSize="34sp" />
+
+                <TextView
+                    android:id="@+id/remainTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" 00:00:00"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/maru_sb"
+                    android:textAlignment="center"
+                    android:textSize="25sp"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/day_quest"
+                    android:fontFamily="@font/maru_sb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/day_quest"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/doQuest"
+                    android:fontFamily="@font/maru_sb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:text="0 / 3"
+                    android:textSize="21sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/questListSize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:autoSizeMaxTextSize="16dp"
+                    android:textSize="15sp"
+                    tools:text="남은 퀘스트: 00" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <fragment
+                android:id="@+id/QuestListFragment"
+                android:name="com.example.capstone4_1.fragment.QuestlistviewFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="4dp">
+
+                <android.widget.Button
+                    android:id="@+id/fab"
+                    android:layout_width="150dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginVertical="2dp"
+                    android:background="@drawable/dotline"
+                    android:text="+  할일 추가"
+                    android:textAlignment="center"
+                    android:textColor="@color/white" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
 </FrameLayout>

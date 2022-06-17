@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:background="#964b00"
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".fragment.MyinfoFragment">
@@ -13,19 +13,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <!-- 현재 페이지 이름             weight 1 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:background="#deb887"
+            android:layout_margin="3dp"
+            android:gravity="center">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center"
+                android:background="#deb887"
                 android:text="@string/MyInfo"
                 android:textAlignment="center"
+                android:textColor="#964b00"
                 android:textSize="30sp" />
+            <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tierInfo"
+            android:src="@drawable/ic_baseline_info_24"/>
+
         </LinearLayout>
+
         <!--  내 정보                    weight 3 -->
         <LinearLayout
             android:id="@+id/info"
@@ -34,37 +49,57 @@
             android:layout_weight="3"
             android:baselineAligned="false"
             android:orientation="horizontal"
-            android:weightSum="5">
+            android:weightSum="2">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:background="#964b00"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:weightSum="2">
 
-                <ImageView
-                    android:id="@+id/myCharacter"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="10"
-                    android:background="@color/white"
-                    android:contentDescription="@string/MyInfo"
-                    android:src="@drawable/sprite_char1" />
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="2">
 
-                <ProgressBar
-                    android:id="@+id/indolence"
-                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    <ImageView
+                        android:id="@+id/myCharacter"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:background="#deb887"
+                        android:contentDescription="@string/MyInfo" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:progress="100"
-                    android:indeterminateTint="@color/black" />
+                    android:background="#deb887"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <RatingBar
+                        android:id="@+id/hp_Bar"
+                        style="@style/slothBar"
+                        android:layout_width="195dp"
+                        android:layout_height="wrap_content"
+                        android:isIndicator="true"
+                        android:numStars="3" />
+
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
+                android:layout_weight="1"
+                android:background="#964b00"
                 android:orientation="vertical"
                 android:weightSum="3">
 
@@ -72,53 +107,56 @@
                     android:id="@+id/myInfoName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:background="@color/purple_200"
-                    tools:text="이름"
-                    android:gravity="center_vertical"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="10dp"
                     android:autoSizeMaxTextSize="40dp"
-                    />
+                    android:autoSizeMinTextSize="10dp"
+                    android:autoSizeTextType="uniform"
+                    android:background="#deb887"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#964b00"
+                    tools:text="이름" />
 
                 <TextView
                     android:id="@+id/myInfoGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:background="@color/purple_200"
-                    tools:text="성별"
-                    android:gravity="center_vertical"
-                    android:autoSizeTextType="uniform"
+                    android:autoSizeMaxTextSize="40dp"
                     android:autoSizeMinTextSize="10dp"
-                    android:autoSizeMaxTextSize="40dp"/>
+                    android:autoSizeTextType="uniform"
+                    android:background="#deb887"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#964b00"
+                    tools:text="성별" />
 
                 <TextView
                     android:id="@+id/myInfoInterest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
-                    android:background="@color/purple_200"
-                    tools:text="관심목표"
-                    android:gravity="center_vertical"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="10dp"
                     android:autoSizeMaxTextSize="40dp"
-                    />
+                    android:autoSizeMinTextSize="10dp"
+                    android:autoSizeTextType="uniform"
+                    android:background="#deb887"
+                    android:gravity="center"
+                    android:textAlignment="center"
+                    android:textColor="#964b00"
+                    tools:text="관심목표" />
+
             </LinearLayout>
         </LinearLayout>
-        <!--    통계                      weight 5 -->
-        <LinearLayout
+
+        <ListView
+            android:layout_margin="1dp"
+            android:id="@+id/statisticsListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="6">
+            android:layout_height="0dp"
+            android:layout_weight="5" />
 
-<!--            <fragment-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:id="@+id/statistics"-->
-<!--                android:name="com.example.capstone4_1.fragment.MyinfoFragment"/>-->
-        </LinearLayout>
     </LinearLayout>
-
 </FrameLayout>

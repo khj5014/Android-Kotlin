@@ -3,79 +3,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_margin="10dp"
+    android:orientation="vertical"
     tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/todo"
-            android:textSize="20sp" />
-        <fragment
-            android:id="@+id/mainList"
+        android:orientation="vertical" >
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="100dp"
             android:layout_weight="1"
-            android:name="com.example.capstone4_1.fragment.QuestListFragment" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/SVday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:fontFamily="@font/nanumson"
+                android:text="@string/end"
+                android:textSize="37sp" />
+
+            <fragment
+                android:id="@+id/HomeFragment"
+                android:name="com.example.capstone4_1.fragment.QuestlistviewFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <FrameLayout
+                android:layout_width="100dp"
+                android:layout_height="90dp"
                 android:layout_gravity="center"
-                android:orientation="vertical">
+                android:visibility="visible" />
 
-                <FrameLayout
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_weight="1"
-                    android:visibility="visible">
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_horizontal"
-                        android:src="@drawable/speechbox" />
-
-                    <LinearLayout
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="말풍선"
-                            android:textSize="15dp" />
-                    </LinearLayout>
-                </FrameLayout>
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/myCharacter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/sprite_char2" />
-
-            <ProgressBar
-                android:id="@+id/indolence"
-                style="@android:style/Widget.ProgressBar.Horizontal"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:progress="100" />
         </LinearLayout>
-    </LinearLayout>
 
+        <ImageView
+            android:id="@+id/mainCharacterIcon"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/sprite_char1" />
+    </LinearLayout>
 </FrameLayout>

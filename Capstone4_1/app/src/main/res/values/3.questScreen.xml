@@ -1,3 +1,6 @@
 <resources>
     <string name="quest_main">퀘스트 리스트</string>
+    <string name="next_quest">다음 퀘스트까지 ></string>
+    <string name="day_quest">일일 진행도 :</string>
+    <string name="btn_insert">퀘스트 생성</string>
 </resources>

@@ -1,11 +1,21 @@
 package com.example.capstone4_1.fragment
 
+import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.example.capstone4_1.Character
+import com.example.capstone4_1.Character.survivalDays
 import com.example.capstone4_1.R
+import java.util.*
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +31,7 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var mToast: Toast? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,13 +41,56 @@ class HomeFragment : Fragment() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val mainCharacterIcon = view.findViewById<ImageView>(R.id.mainCharacterIcon)
+
+        //초기화
+        view.findViewById<TextView>(R.id.SVday)
+            .setText(survivalDays()?.plus(1).toString() + " 일차 생존")
+        view.findViewById<ImageView>(R.id.mainCharacterIcon).setImageResource(Character.icon)
+
+        mainCharacterIcon.setOnClickListener { //이미지 클릭시
+            val pos = IntArray(2) //[0]:x  [1]:y
+            mainCharacterIcon.getLocationOnScreen(pos)
+            makeToast(mainCharacterIcon.height) //토스트 출력
+
+        }
+
+        return view
     }
+
+    private fun makeToast(y: Int) {
+
+        val inflater = layoutInflater
+        val layout: View = inflater.inflate(
+            R.layout.toastborder,
+            view?.findViewById(R.id.toast_layout) as ViewGroup?
+        )
+        val randomStrings = arrayOf("안녕하세요", "반갑습니다", "배고파")
+        val message = layout.findViewById<TextView>(R.id.toastText)
+        message.setText(randomStrings[Random().nextInt(randomStrings.size)])
+
+        mToast?.cancel()
+
+        mToast = Toast(context)
+        mToast!!.setGravity(Gravity.BOTTOM, 0, y + 170)
+        mToast!!.duration = Toast.LENGTH_SHORT
+        mToast!!.setView(layout);
+        mToast!!.show()
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mToast?.cancel()
+    }
+
 
     companion object {
         /**

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CreateQuestActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#93B7D9"
+        android:paddingHorizontal="5dp">
+
+        <ImageButton
+            android:id="@+id/backbtn"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="#93B7D9"
+            android:src="@drawable/ic_menu_back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="10dp"
+            android:text="나만의 퀘스트 만들기"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/Makebtn"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="#93B7D9"
+            android:src="@drawable/ic_menu_check" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제목"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/qname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:hint="제목을 입력하세요"
+            android:maxLength="20"
+            android:maxLines="1"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp">
+
+        <EditText
+            android:id="@+id/qexplain"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:hint="설명을 입력하세요"
+            android:maxLength="100"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>

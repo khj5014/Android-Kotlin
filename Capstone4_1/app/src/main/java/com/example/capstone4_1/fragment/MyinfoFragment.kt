@@ -1,13 +1,17 @@
 package com.example.capstone4_1.fragment
 
+import android.app.AlertDialog
+import android.app.Dialog
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
-import com.example.capstone4_1.Character
-import com.example.capstone4_1.R
+import com.example.capstone4_1.*
+
+
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -29,26 +33,34 @@ class MyinfoFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_myinfo, container, false)
+        val listView = view.findViewById<ListView>(R.id.statisticsListView)
+        val button = view.findViewById<ImageView>(R.id.tierInfo)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        val rootView = inflater.inflate(R.layout.fragment_myinfo, container, false) as ViewGroup
+        button.setOnClickListener{
+            val builder = AlertDialog.Builder(requireContext())
+            val inflater = requireActivity().layoutInflater;
+            builder.setView(inflater.inflate(R.layout.quest_show_popup, null))
+            builder.show()
 
-        var name = rootView.findViewById<TextView>(R.id.myInfoName)
-        var gender = rootView.findViewById<TextView>(R.id.myInfoGender)
-        var interest = rootView.findViewById<TextView>(R.id.myInfoInterest)
+        }
+        //화면 초기화
+        view.findViewById<ImageView>(R.id.myCharacter).setImageResource(Character.icon)
+        view.findViewById<TextView>(R.id.myInfoName).append("이름:${Character.name}")
+        view.findViewById<TextView>(R.id.myInfoGender).append("성별:${Character.gender.value}")
+        view.findViewById<TextView>(R.id.myInfoInterest).append("관심:${Character.interest.value}")
+        view.findViewById<RatingBar>(R.id.hp_Bar).rating = Character.hp
 
-        var nameValue = Character.name
-        var genderValue = Character.gender
-        var interestValue = Character.interest
+        //리스트뷰 연결
+        listView.adapter = StatisticsAdapter(requireContext())
 
-        name.append(" $nameValue")
-        gender.append(" $genderValue")
-        interest.append(" $interestValue")
-
-        return rootView
+        return view
     }
 
     companion object {
@@ -70,3 +82,4 @@ class MyinfoFragment : Fragment() {
                 }
     }
 }
+

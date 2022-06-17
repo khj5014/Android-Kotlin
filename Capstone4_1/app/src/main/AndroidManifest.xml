@@ -3,17 +3,25 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_main_foreground"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_main_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.Capstone4_1">
         <activity
-            android:name=".activity_main_screen"
-            android:exported="false" />
+            android:name=".Splash"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
-            android:name=".MyInfoActivity"
-            android:exported="false" />
+            android:name=".EndActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".QuestShowActivity"
             android:exported="false" />
@@ -21,14 +29,28 @@
             android:name=".CreateCharacterActivity"
             android:exported="false" />
         <activity
+            android:name=".CreateQuestActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false"
+            android:screenOrientation="portrait">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+
+        <service
+            android:name=".AutoSave"
+            android:stopWithTask="false" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.capstone4_1"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/fileprovider" />
+        </provider>
     </application>
 
 </manifest>
