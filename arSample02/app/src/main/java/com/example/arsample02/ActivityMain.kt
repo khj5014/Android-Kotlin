@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 import com.example.arsample02.databinding.ActivityMainBinding
 import com.google.ar.core.Anchor
 import com.google.ar.sceneform.AnchorNode
+import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.animation.ModelAnimator
 import com.google.ar.sceneform.rendering.AnimationData
 import com.google.ar.sceneform.rendering.ModelRenderable
@@ -22,56 +23,53 @@ import com.google.ar.sceneform.ux.TransformableNode
 
 class ActivityMain : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var arFragment: ArFragment
+    lateinit var arFragment: ArFragment
     private lateinit var anchor: Anchor
+
     private val anchorNodeList: ArrayList<AnchorNode> = ArrayList()
 
     private var animator: ModelAnimator? = null
     private val nimoRenderable: ModelRenderable? = null
     private var nextAnimation = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
-
-
         val deleteButton = binding.deleteButton  //삭제버튼
         val animationplayButton = binding.animationplayButton //재생버튼
         animationplayButton.setEnabled(false)
         val allDeleteButton = binding.allDeleteButton //전체삭제버튼
 
         //한개씩 삭제 버튼 리스너
-        deleteButton.setOnClickListener {
-            Log.d("asdf", anchorNodeList.toString())
-            removeAnchorNode(arFragment)
-        }
+        deleteButton.setOnClickListener { AnchorNode(anchor).let { it1 -> removeAnchorNode(it1) } }
         //전체 삭제 버튼 리스너
         allDeleteButton.setOnClickListener { removeAllSticker(arFragment) }
-        //한개씩 삭제 버튼 리스너
+        //애니메이션 삭제 버튼 리스너
         animationplayButton.setOnClickListener { onPlayAnimation() }
-        //테스트용 리스너
-        deleteButton.setOnLongClickListener {
-            toastShow("길게 누르기")
-            true
-        }
+
         arFragment.setOnTapArPlaneListener(BaseArFragment.OnTapArPlaneListener { hitResult, plane, motionEvent ->
             anchor = hitResult.createAnchor()
 
             ModelRenderable.builder()
                 .setSource(this, Uri.parse("Playful dog.sfb"))
                 .build()
-                .thenAccept { addModelToScence(anchor, it) }
+                .thenAccept {
+                    addModelToScence(anchor, it)
+                    Log.d("★★", anchorNodeList.toString())
+                }
                 .exceptionally {
-
                     val builder: AlertDialog.Builder = AlertDialog.Builder(this)
-                    builder.setMessage(it.localizedMessage)
-                        .show()
-
+                    builder.setMessage(it.localizedMessage).show()
                     return@exceptionally null
                 }
+
+            val TFN = TransformableNode(arFragment.transformationSystem)
+            TFN.setOnTapListener { hitTestResult, _ ->
+                removeAnchorNode(AnchorNode(anchor))
+            }
+
         })
         if (!animationplayButton.isEnabled()) {
             animationplayButton.setBackgroundTintList(
@@ -99,39 +97,20 @@ class ActivityMain : AppCompatActivity() {
         anchorNodeList.add(anchorNode)  //리스트에 노드 추가
 
         toastShow("${anchorNodeList.size} 생성")
-
     }
 
-    //제거 (마지막 생성먼저)
-    private fun removeAnchorNode(fragment: ArFragment) {
+    //제거
+    private fun removeAnchorNode(seleNode: AnchorNode) {
         val indNum: Int = anchorNodeList.size - 1
         if (indNum >= 0) {
-            for (i in 0 until anchorNodeList.size) {
-                if (anchorNodeList[i].toString() == anchor.toString()) {
-
-                    val anchorNode: AnchorNode = anchorNodeList[i]
-
-                    anchorNode.getAnchor()?.detach()         //앵커 분리
-                    anchorNode.setParent(null)
-                    anchorNode.renderable = null
-
-                    anchorNodeList.remove(anchorNode)
-
-                    toastShow("제거 성공")
-                }
-            }
+            arFragment.getArSceneView().getScene().removeChild(seleNode)
+            seleNode.setParent(null);
+            seleNode.getAnchor()?.detach();
+            seleNode.renderable = null
+            toastShow("제거 성공")
 
         } else toastShow("제거 할 것이 없다.")
-    }
 
-    //토스트 메시지 출력
-    private fun toastShow(message: String) {
-        var toast: Toast? = null
-        // 토스트 메서드
-        if (toast == null) {
-            toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
-        } else toast.setText(message)
-        toast?.show()
     }
 
     //전체삭제
@@ -165,5 +144,15 @@ class ActivityMain : AppCompatActivity() {
             toast.setGravity(Gravity.CENTER, 0, 0)
             toast.show()
         }
+    }
+
+    //토스트 메시지 출력
+    private fun toastShow(message: String) {
+        var toast: Toast? = null
+        // 토스트 메서드
+        if (toast == null) {
+            toast = Toast.makeText(this, message, Toast.LENGTH_SHORT)
+        } else toast.setText(message)
+        toast?.show()
     }
 }
