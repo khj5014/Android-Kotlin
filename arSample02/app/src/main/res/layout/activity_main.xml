@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/mybutton"
+        android:id="@+id/deleteButton"
         android:layout_width="103dp"
         android:layout_height="57dp"
         android:layout_marginStart="16dp"
@@ -28,7 +28,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/mybutton2"
+        android:id="@+id/animationplayButton"
         android:layout_width="103dp"
         android:layout_height="57dp"
         android:layout_marginBottom="16dp"
@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/mybutton3"
+        android:id="@+id/allDeleteButton"
         android:layout_width="103dp"
         android:layout_height="57dp"
         android:layout_marginEnd="16dp"

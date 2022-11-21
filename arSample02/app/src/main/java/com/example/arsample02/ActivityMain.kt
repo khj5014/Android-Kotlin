@@ -3,6 +3,7 @@ package com.example.arsample02
 import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -24,23 +25,29 @@ class ActivityMain : AppCompatActivity() {
     private lateinit var arFragment: ArFragment
     private lateinit var anchor: Anchor
     private val anchorNodeList: ArrayList<AnchorNode> = ArrayList()
+
     private var animator: ModelAnimator? = null
     private val nimoRenderable: ModelRenderable? = null
     private var nextAnimation = 0
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
 
-        val deleteButton = binding.mybutton  //삭제버튼
-        val animationplayButton = binding.mybutton2 //재생버튼
+
+        val deleteButton = binding.deleteButton  //삭제버튼
+        val animationplayButton = binding.animationplayButton //재생버튼
         animationplayButton.setEnabled(false)
-        val allDeleteButton = binding.mybutton3 //전체삭제버튼
-
+        val allDeleteButton = binding.allDeleteButton //전체삭제버튼
 
         //한개씩 삭제 버튼 리스너
-        deleteButton.setOnClickListener { removeAnchorNode() }
+        deleteButton.setOnClickListener {
+            Log.d("asdf", anchorNodeList.toString())
+            removeAnchorNode(arFragment)
+        }
         //전체 삭제 버튼 리스너
         allDeleteButton.setOnClickListener { removeAllSticker(arFragment) }
         //한개씩 삭제 버튼 리스너
@@ -50,9 +57,6 @@ class ActivityMain : AppCompatActivity() {
             toastShow("길게 누르기")
             true
         }
-
-        arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
-
         arFragment.setOnTapArPlaneListener(BaseArFragment.OnTapArPlaneListener { hitResult, plane, motionEvent ->
             anchor = hitResult.createAnchor()
 
@@ -76,11 +80,7 @@ class ActivityMain : AppCompatActivity() {
 
         } else {
             animationplayButton.setEnabled(true)
-
-
         }
-
-
     }
 
     //생성
@@ -103,18 +103,23 @@ class ActivityMain : AppCompatActivity() {
     }
 
     //제거 (마지막 생성먼저)
-    private fun removeAnchorNode() {
+    private fun removeAnchorNode(fragment: ArFragment) {
         val indNum: Int = anchorNodeList.size - 1
         if (indNum >= 0) {
-            val anchorNode: AnchorNode = anchorNodeList[indNum]
+            for (i in 0 until anchorNodeList.size) {
+                if (anchorNodeList[i].toString() == anchor.toString()) {
 
-            anchorNode.getAnchor()?.detach()         //앵커 분리
-            anchorNode.setParent(null)
-            anchorNode.renderable = null
+                    val anchorNode: AnchorNode = anchorNodeList[i]
 
-            anchorNodeList.remove(anchorNode)
+                    anchorNode.getAnchor()?.detach()         //앵커 분리
+                    anchorNode.setParent(null)
+                    anchorNode.renderable = null
 
-            toastShow("제거 성공")
+                    anchorNodeList.remove(anchorNode)
+
+                    toastShow("제거 성공")
+                }
+            }
 
         } else toastShow("제거 할 것이 없다.")
     }
@@ -146,8 +151,7 @@ class ActivityMain : AppCompatActivity() {
 
             }
             toastShow("제거 성공")
-        }else toastShow("제거 할 것이 없다.")
-
+        } else toastShow("제거 할 것이 없다.")
     }
 
     private fun onPlayAnimation() {
