@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
-import android.view.MotionEvent
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,24 +12,19 @@ import androidx.core.content.ContextCompat
 import com.example.arsample02.databinding.ActivityMainBinding
 import com.google.ar.core.Anchor
 import com.google.ar.sceneform.AnchorNode
-import com.google.ar.sceneform.HitTestResult
-import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.animation.ModelAnimator
 import com.google.ar.sceneform.rendering.AnimationData
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.BaseArFragment
 import com.google.ar.sceneform.ux.TransformableNode
-import com.google.sceneform_animation.cq.an
 
 
 class ActivityMain : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var arFragment: ArFragment
     private lateinit var anchor: Anchor
-
     private val anchorNodeList: ArrayList<AnchorNode> = ArrayList()
-    private val transform = TransformableNode(arFragment.transformationSystem)
 
     private var animator: ModelAnimator? = null
     private val nimoRenderable: ModelRenderable? = null
@@ -43,25 +37,23 @@ class ActivityMain : AppCompatActivity() {
         setContentView(binding.root)
         arFragment = supportFragmentManager.findFragmentById(R.id.arFragment) as ArFragment
 
+
         val deleteButton = binding.deleteButton  //삭제버튼
         val animationplayButton = binding.animationplayButton //재생버튼
         animationplayButton.setEnabled(false)
         val allDeleteButton = binding.allDeleteButton //전체삭제버튼
 
-
-        transform.setOnTapListener { hitTestResult: HitTestResult, Event: MotionEvent? ->
-            val nodeToRemove: Node? = hitTestResult.getNode()
-            toastShow("오브젝트 선택")
+        //한개씩 삭제 버튼 리스너
+        deleteButton.setOnClickListener {
+            Log.d("asdf", anchorNodeList.toString())
+            removeAnchorNode(arFragment)
         }
-        //선택 삭제 버튼 리스너
-        deleteButton.setOnClickListener {  toastShow("제거 성공") }
         //전체 삭제 버튼 리스너
         allDeleteButton.setOnClickListener { removeAllSticker(arFragment) }
-        //애니메이션 버튼
+        //한개씩 삭제 버튼 리스너
         animationplayButton.setOnClickListener { onPlayAnimation() }
         //테스트용 리스너
         deleteButton.setOnLongClickListener {
-            Log.d("asdf", anchorNodeList.toString())
             toastShow("길게 누르기")
             true
         }
@@ -71,11 +63,7 @@ class ActivityMain : AppCompatActivity() {
             ModelRenderable.builder()
                 .setSource(this, Uri.parse("Playful dog.sfb"))
                 .build()
-                .thenAccept {
-                    addModelToScence(anchor, it)
-                    Log.d("asdfaaaaaaaaa", anchorNodeList.toString())
-
-                }
+                .thenAccept { addModelToScence(anchor, it) }
                 .exceptionally {
 
                     val builder: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -114,9 +102,26 @@ class ActivityMain : AppCompatActivity() {
 
     }
 
-    //3D 오브젝트 제거
-    fun removeAnchorNode() {
+    //제거 (마지막 생성먼저)
+    private fun removeAnchorNode(fragment: ArFragment) {
+        val indNum: Int = anchorNodeList.size - 1
+        if (indNum >= 0) {
+            for (i in 0 until anchorNodeList.size) {
+                if (anchorNodeList[i].toString() == anchor.toString()) {
 
+                    val anchorNode: AnchorNode = anchorNodeList[i]
+
+                    anchorNode.getAnchor()?.detach()         //앵커 분리
+                    anchorNode.setParent(null)
+                    anchorNode.renderable = null
+
+                    anchorNodeList.remove(anchorNode)
+
+                    toastShow("제거 성공")
+                }
+            }
+
+        } else toastShow("제거 할 것이 없다.")
     }
 
     //토스트 메시지 출력
@@ -162,7 +167,3 @@ class ActivityMain : AppCompatActivity() {
         }
     }
 }
-
-
-
-
