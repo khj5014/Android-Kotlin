@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">환율 계산기</string>
+    <string name="convert_string">변환</string>
+    <string name="change_value_hint">변환 값 입력</string>
+    <string name="change_value">값</string>
+    <string name="no_value_String">값이 없습니다</string>
+</resources>

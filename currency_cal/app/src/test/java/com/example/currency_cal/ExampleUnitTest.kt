@@ -1,4 +1,4 @@
-package com.example.androidsample
+package com.example.currency_cal
 
 import org.junit.Test
 
