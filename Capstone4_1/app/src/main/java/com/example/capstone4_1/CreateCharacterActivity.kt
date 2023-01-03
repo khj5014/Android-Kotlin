@@ -41,7 +41,6 @@ class CreateCharacterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateCharacterBinding.inflate(layoutInflater)
 
-        //스텁 코드
         binding.viewPager.adapter = CharacterListPagerAdapter(imageResourceList)
 
         binding.viewPagerIndicater.setClickListener(ClickListener {

@@ -5,7 +5,11 @@ Capstone
 > ✨ 이문서는 2022년도 4학년 1학기에 진행하는 캡스톤디자인 활동에 대해 기록하는 문서 입니다.
 
 
-👨‍👨‍👧‍👦Contributor
+👨‍👨‍👧‍👦Contributor  
+<br>
+<a href="https://github.com/Aierse/Capstone4_1/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Aierse/Capstone4_1" />
+</a>
 ---
 |역할|이름|학번|업무|
 |--|--|--|--|
@@ -24,7 +28,7 @@ Capstone
 ## 1. 📱 App(작심삼백일)
 
 > 
-> [App](https://excessive-onyx-7ef.notion.site/22-03-24-444d531edf074ab69d0f0b42092ef977) < 설명은 링크로 대체
+> [App](https://verdant-result-e1b.notion.site/18dde67553e84113b3722fc4a43edbb2) < 설명은 링크로 대체
 <p>
     <img src="img/sample_img2.png" width="49%" height="455">
     <img src="img/sample_img1.png" width="49%" height="455">
