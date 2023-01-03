@@ -152,6 +152,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(intent, RESPONSE_CREATE_CHARACTER)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onDestroy() {
         Character.saveCharacter(this)
         super.onDestroy()
@@ -164,6 +165,7 @@ class AutoSave : Service() {
         return null
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onTaskRemoved(rootIntent: Intent) { //핸들링 하는 부분
         Character.saveCharacter(this)
 

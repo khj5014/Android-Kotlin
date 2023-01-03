@@ -92,6 +92,7 @@ object Character {
         return Period.between(createTime.toLocalDate(), currentLogin?.toLocalDate()).days
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun saveCharacter(context: Context) {//save
         if (!isInitialized)
             return
